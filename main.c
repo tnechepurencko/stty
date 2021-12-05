@@ -74,23 +74,28 @@ int getCRDLY(int crdly) {
     }
 }
 
-int getBaud(int temp) {
-    if (temp == 0) return 0;
-    if (temp == 1) return 50;
-    if (temp == 2) return 75;
-    if (temp == 3) return 110;
-    if (temp == 4) return 134;
-    if (temp == 5) return 150;
-    if (temp == 6) return 200;
-    if (temp == 7) return 300;
-    if (temp == 8) return 600;
-    if (temp == 9) return 1200;
-    if (temp == 10) return 1800;
-    if (temp == 11) return 2400;
-    if (temp == 12) return 4800;
-    if (temp == 13) return 9600;
-    if (temp == 14) return 19200;
-    if (temp == 15) return 38400;
+int getSpeed(int B) {
+    switch (B) {
+        case 0:  return 0;
+        case 1:  return 50;
+        case 2:  return 75;
+        case 3:  return 110;
+        case 4:  return 134;
+        case 5:  return 150;
+        case 6:  return 200;
+        case 7:  return 300;
+        case 8:  return 600;
+        case 9:  return 1200;
+        case 10:  return 1800;
+        case 11:  return 2400;
+        case 12:  return 4800;
+        case 13:  return 9600;
+        case 14:  return 19200;
+        case 15:  return 38400;
+        case 16:  return 57600;
+        case 17:  return 115200;
+        default: return INT_MAX; // does not possible
+    }
 }
 
 void configure(char *configs, char *str, struct termios *term) {
@@ -680,7 +685,7 @@ void outputSettings(struct termios term) {
 void humanReadable(int descriptor, struct winsize size) {
     struct termios term;
     if (tcgetattr(descriptor, &term) == 0) {
-        printf("speed = %d; row = %d; column = %d; line = %d;\n", getBaud(term.c_ispeed), size.ws_row, size.ws_col, term.c_line);
+        printf("speed = %d; row = %d; column = %d; line = %d;\n", getSpeed(term.c_ispeed), size.ws_row, size.ws_col, term.c_line);
         printf("intr = ^C; quit = ^/; erase = ^?; kill = ^U; eof = ^D; eol = <undef>; eol2 = <undef>; swtch = <undef>; "
                "start = ^Q; stop = ^S; susp = ^Z; rprnt = ^R; werase = ^W; lnext = ^V; discard = ^O; min = 1; time = 0;\n");
 
@@ -729,7 +734,7 @@ int main(int argc, char **argv) {
 
     if (argc == 1) {
         if (tcgetattr(descriptor, &term) == 0) {
-            printf("speed = %d; line = %d;\n", getBaud(term.c_ispeed), term.c_line);
+            printf("speed = %d; line = %d;\n", getSpeed(term.c_ispeed), term.c_line);
             printf("%cbrkint %cimaxbel %ciutf8\n", flagAndVal(term.c_iflag, BRKINT), flagAndVal(term.c_iflag, IMAXBEL),
                    flagAndVal(term.c_iflag, IUTF8));
         } else {
