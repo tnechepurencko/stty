@@ -721,9 +721,9 @@ int main(int argc, char **argv) {
     int flag = 0;
 
     char *device;
-    char temp[1000];
-    char temp_c[2];
-    char *temp2;
+    char command1[1000];
+    char command2[2];
+    char *command3;
 
     struct winsize size;
     struct termios term;
@@ -765,15 +765,15 @@ int main(int argc, char **argv) {
             } else {
                 if (tcgetattr(descriptor, &term) == 0) {
                     for (int i = 3; i < argc; i++) {
-                        temp_c[0] = argv[i][0];
+                        command2[0] = argv[i][0];
                         size_t len = strlen(argv[i]);
 
-                        if (strcmp(temp_c, "-") == 0) {
-                            memcpy(temp, &argv[i][1], len - 1);
+                        if (strcmp(command2, "-") == 0) {
+                            memcpy(command1, &argv[i][1], len - 1);
                         } else {
-                            memcpy(temp, &argv[i][0], len);
+                            memcpy(command1, &argv[i][0], len);
                         }
-                        configure(temp_c, temp, &term);
+                        configure(command2, command1, &term);
                     }
 
                     tcsetattr(descriptor, TCSAFLUSH, &term);
@@ -785,16 +785,16 @@ int main(int argc, char **argv) {
         } else {
             if (tcgetattr(descriptor, &term) == 0) {
                 for (int i = 1; i < argc; i++) {
-                    temp_c[0] = argv[i][0];
+                    command2[0] = argv[i][0];
                     size_t len = strlen(argv[i]);
 
-                    if (strcmp(temp_c, "-") == 0) {
-                        memcpy(temp, &argv[i][1], len - 1);
+                    if (strcmp(command2, "-") == 0) {
+                        memcpy(command1, &argv[i][1], len - 1);
                     } else {
-                        memcpy(temp, &argv[i][0], len);
+                        memcpy(command1, &argv[i][0], len);
                     }
 
-                    configure(temp_c, temp, &term);
+                    configure(command2, command1, &term);
                 }
 
                 tcsetattr(descriptor, TCSAFLUSH, &term);
