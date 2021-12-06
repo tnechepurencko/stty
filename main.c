@@ -9,69 +9,43 @@
 #include <fcntl.h>
 
 int getFFDLY(int ffdly) {
-    if (ffdly == FF0) {
-        return 0;
-    } else if (ffdly == FF1) {
-        return 1;
-    }
+    if (ffdly == FF0) return 0;
+    else if (ffdly == FF1) return 1;
 }
 
 int getNLDLY(int nldly) {
-    if (nldly == NL0) {
-        return 0;
-    } else if (nldly == NL1) {
-        return 1;
-    }
+    if (nldly == NL0) return 0;
+    else if (nldly == NL1) return 1;
 }
 
 int getVTDLY(int vtdly) {
-    if (vtdly == VT0) {
-        return 0;
-    } else if (vtdly == VT1) {
-        return 1;
-    }
+    if (vtdly == VT0) return 0;
+    else if (vtdly == VT1) return 1;
 }
 
 int getBSDLY(int bsdly) {
-    if (bsdly == BS0) {
-        return 0;
-    } else if (bsdly == BS1) {
-        return 1;
-    }
+    if (bsdly == BS0) return 0;
+    else if (bsdly == BS1) return 1;
 }
 
 int getTABDLY(int tabdly) {
-    if (tabdly == TAB0) {
-        return 0;
-    } else if (tabdly == TAB1) {
-        return 1;
-    } else if (tabdly == TAB2) {
-        return 2;
-    }
+    if (tabdly == TAB0) return 0;
+    else if (tabdly == TAB1) return 1;
+    else if (tabdly == TAB2) return 2;
 }
 
 int getCSIZE(int csize) {
-    if (csize == CS5) {
-        return 5;
-    } else if (csize == CS6) {
-        return 6;
-    } else if (csize == CS7) {
-        return 7;
-    } else if (csize == CS8) {
-        return 8;
-    }
+    if (csize == CS5) return 5;
+    else if (csize == CS6) return 6;
+    else if (csize == CS7) return 7;
+    else if (csize == CS8) return 8;
 }
 
 int getCRDLY(int crdly) {
-    if (crdly == CR0) {
-        return 0;
-    } else if (crdly == CR1) {
-        return 1;
-    } else if (crdly == CR2) {
-        return 2;
-    } else if (crdly == CR3) {
-        return 3;
-    }
+    if (crdly == CR0) return 0;
+    else if (crdly == CR1) return 1;
+    else if (crdly == CR2) return 2;
+    else if (crdly == CR3) return 3;
 }
 
 int getSpeed(int B) {
