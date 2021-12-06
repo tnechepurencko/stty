@@ -328,7 +328,7 @@ void sttyReadable() {
     printf("%x:", term.c_oflag);
 }
 
-void dealWithCommands(char command1[], char command2[], char **argv) {
+void setAttributes(char command1[], char command2[], char **argv) {
     struct termios term;
 
     for (int i = 0; i < argc; i++) {
@@ -383,10 +383,10 @@ int main(int argc, char **argv) {
             } else if (strcmp(argv[3], "-g") == 0) {
                 sttyReadable();
             } else {
-                dealWithCommands(command1, command2, argv);
+                setAttributes(command1, command2, argv);
             }
         } else if (tcgetattr(descriptor, &term) == 0) {
-            dealWithCommands(command1, command2, argv);
+            setAttributes(command1, command2, argv);
         }
     }
 
