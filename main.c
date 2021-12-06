@@ -506,8 +506,6 @@ void humanReadable(int descriptor, struct winsize size) {
     struct termios term;
     if (tcgetattr(descriptor, &term) == 0) {
         printf("speed = %d; row = %d; column = %d; line = %d;\n", getSpeed(term.c_ispeed), size.ws_row, size.ws_col, term.c_line);
-        printf("intr = ^C; quit = ^/; erase = ^?; kill = ^U; eof = ^D; eol = <undef>; eol2 = <undef>; swtch = <undef>; "
-               "start = ^Q; stop = ^S; susp = ^Z; rprnt = ^R; werase = ^W; lnext = ^V; discard = ^O; min = 1; time = 0;\n");
 
         currentSettings(term);
         localSettings(term);
