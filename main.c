@@ -536,8 +536,6 @@ void sttyReadable(int descriptor) {
 }
 
 int main(int argc, char **argv) {
-    int flag = 0;
-
     char *device;
 
     char command1[1000];
