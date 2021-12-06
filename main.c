@@ -8,9 +8,11 @@
 #include <termios.h>
 #include <fcntl.h>
 
-int getFFDLY(int ffdly) {
-    if (ffdly == FF0) return 0;
-    else if (ffdly == FF1) return 1;
+int getCSIZE(int csize) {
+    if (csize == CS5) return 5;
+    else if (csize == CS6) return 6;
+    else if (csize == CS7) return 7;
+    else if (csize == CS8) return 8;
 }
 
 int getNLDLY(int nldly) {
@@ -32,13 +34,6 @@ int getTABDLY(int tabdly) {
     if (tabdly == TAB0) return 0;
     else if (tabdly == TAB1) return 1;
     else if (tabdly == TAB2) return 2;
-}
-
-int getCSIZE(int csize) {
-    if (csize == CS5) return 5;
-    else if (csize == CS6) return 6;
-    else if (csize == CS7) return 7;
-    else if (csize == CS8) return 8;
 }
 
 int getCRDLY(int crdly) {
@@ -78,24 +73,9 @@ void configure(char *configs, char *str, struct termios *term) {
         else term->c_iflag |= BRKINT;
     }
 
-    if (strcmp(str, "icrnl") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_iflag &= ~ICRNL;
-        else term->c_iflag |= ICRNL;
-    }
-
     if (strcmp(str, "iutf8") == 0) {
         if (strcmp(configs, "-") == 0) term->c_iflag &= ~IUTF8;
         else term->c_iflag |= IUTF8;
-    }
-
-    if (strcmp(str, "crtscts") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CRTSCTS;
-        else term->c_cflag |= CRTSCTS;
-    }
-
-    if (strcmp(str, "iuclc") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IUCLC;
-        else term->c_iflag |= IUCLC;
     }
 
     if (strcmp(str, "ignbrk") == 0) {
@@ -103,29 +83,9 @@ void configure(char *configs, char *str, struct termios *term) {
         else term->c_iflag |= IGNBRK;
     }
 
-    if (strcmp(str, "parmrk") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_iflag &= ~PARMRK;
-        else term->c_iflag |= PARMRK;
-    }
-
-    if (strcmp(str, "cmspar") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CMSPAR;
-        else term->c_cflag |= CMSPAR;
-    }
-
-    if (strcmp(str, "olcuc") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_oflag &= ~OLCUC;
-        else term->c_oflag |= OLCUC;
-    }
-
     if (strcmp(str, "clocal") == 0) {
         if (strcmp(configs, "-") == 0) term->c_cflag &= ~CLOCAL;
         else term->c_cflag |= CLOCAL;
-    }
-
-    if (strcmp(str, "opost") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_oflag &= ~OPOST;
-        else term->c_oflag |= OPOST;
     }
 
     if (strcmp(str, "ignpar") == 0) {
@@ -133,84 +93,14 @@ void configure(char *configs, char *str, struct termios *term) {
         else term->c_iflag |= IGNPAR;
     }
 
-    if (strcmp(str, "ocrnl") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_oflag &= ~OCRNL;
-        else term->c_oflag |= OCRNL;
-    }
-
     if (strcmp(str, "cread") == 0) {
         if (strcmp(configs, "-") == 0) term->c_cflag &= ~CREAD;
         else term->c_cflag |= CREAD;
     }
 
-    if (strcmp(str, "extproc") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_lflag &= ~EXTPROC;
-        else term->c_lflag |= EXTPROC;
-    }
-
-    if (strcmp(str, "onlcr") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_oflag &= ~ONLCR;
-        else term->c_oflag |= ONLCR;
-    }
-
-    if (strcmp(str, "cstopb") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CSTOPB;
-        else term->c_cflag |= CSTOPB;
-    }
-
-    if (strcmp(str, "onocr") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_oflag &= ~ONOCR;
-        else term->c_oflag |= ONOCR;
-    }
-
-    if (strcmp(str, "inpck") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_iflag &= ~INPCK;
-        else term->c_iflag |= INPCK;
-    }
-
-    if (strcmp(str, "istrip") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_iflag &= ~ISTRIP;
-        else term->c_iflag |= ISTRIP;
-    }
-
-    if (strcmp(str, "inlcr") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_iflag &= ~INLCR;
-        else term->c_iflag |= INLCR;
-    }
-
-    if (strcmp(str, "echonl") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHONL;
-        else term->c_lflag |= ECHONL;
-    }
-
-    if (strcmp(str, "noflsh") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_lflag &= ~NOFLSH;
-        else term->c_lflag |= NOFLSH;
-    }
-
-    if (strcmp(str, "igncr") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IGNCR;
-        else term->c_iflag |= IGNCR;
-    }
-
-    if (strcmp(str, "flusho") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_lflag &= ~FLUSHO;
-        else term->c_lflag |= FLUSHO;
-    }
-
     if (strcmp(str, "echok") == 0) {
         if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHOK;
         else term->c_lflag |= ECHOK;
-    }
-
-    if (strcmp(str, "isig") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ISIG;
-        else term->c_lflag |= ISIG;
-    }
-
-    if (strcmp(str, "xcase") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_lflag &= ~XCASE;
-        else term->c_lflag |= XCASE;
     }
 
     if (strcmp(str, "ixon") == 0) {
@@ -228,24 +118,9 @@ void configure(char *configs, char *str, struct termios *term) {
         else term->c_iflag |= IXOFF;
     }
 
-    if (strcmp(str, "ixany") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IXANY;
-        else term->c_iflag |= IXANY;
-    }
-
-    if (strcmp(str, "echoke") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHOKE;
-        else term->c_lflag |= ECHOKE;
-    }
-
     if (strcmp(str, "imaxbel") == 0) {
         if (strcmp(configs, "-") == 0) term->c_iflag &= ~IMAXBEL;
         else term->c_iflag |= IMAXBEL;
-    }
-
-    if (strcmp(str, "icanon") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ICANON;
-        else term->c_lflag |= ICANON;
     }
 
     if (strcmp(str, "parenb") == 0) {
@@ -253,32 +128,9 @@ void configure(char *configs, char *str, struct termios *term) {
         else term->c_cflag |= PARENB;
     }
 
-
-    if (strcmp(str, "ofdel") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_oflag &= ~OFDEL;
-        else term->c_oflag |= OFDEL;
-    }
-
-    if (strcmp(str, "iexten") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_lflag &= ~IEXTEN;
-        else term->c_lflag |= IEXTEN;
-    }
-
     if (strcmp(str, "echoctl") == 0) {
         if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHOCTL;
         else term->c_lflag |= ECHOCTL;
-    }
-
-    if (strcmp(str, "tostop") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_lflag &= ~TOSTOP;
-        else {
-            term->c_lflag |= TOSTOP;
-        }
-    }
-
-    if (strcmp(str, "hupcl") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_cflag &= ~HUPCL;
-        else term->c_cflag |= HUPCL;
     }
 
     if (strcmp(str, "echoprt") == 0) {
@@ -294,16 +146,6 @@ void configure(char *configs, char *str, struct termios *term) {
     if (strcmp(str, "echoe") == 0) {
         if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHOE;
         else term->c_lflag |= ECHOE;
-    }
-
-    if (strcmp(str, "onlret") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_oflag &= ~ONLRET;
-        else term->c_oflag |= ONLRET;
-    }
-
-    if (strcmp(str, "ofill") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_oflag &= ~OFILL;
-        else term->c_oflag |= OFILL;
     }
 
     if (strcmp(str, "cs7") == 0) {
@@ -335,14 +177,6 @@ void configure(char *configs, char *str, struct termios *term) {
         else {
             term->c_oflag &= ~VTDLY;
             term->c_oflag |= VT0;
-        }
-    }
-
-    if (strcmp(str, "ff0") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_oflag &= ~FFDLY;
-        else {
-            term->c_oflag &= ~FFDLY;
-            term->c_oflag |= FF0;
         }
     }
 
@@ -434,14 +268,6 @@ void configure(char *configs, char *str, struct termios *term) {
         }
     }
 
-    if (strcmp(str, "ff1") == 0) {
-        if (strcmp(configs, "-") == 0) term->c_oflag &= ~FFDLY;
-        else {
-            term->c_oflag &= ~FFDLY;
-            term->c_oflag |= FF1;
-        }
-    }
-
     if (strcmp(str, "cs8") == 0) {
         if (strcmp(configs, "-") == 0) term->c_cflag &= ~CSIZE;
         else {
@@ -459,80 +285,47 @@ void configure(char *configs, char *str, struct termios *term) {
     }
 }
 
-char flagAndVal(int flag, int value) {
+char isFlag(int flag, int value) {
     if ((flag & value) == 0) return '-';
     else return ' ';
 }
 
 void currentSettings(struct termios term) {
-    printf("CSIZE%d %cCREAD %cCLOCAL %cPARENB %cPARODD\n %cCMSPAR %cHUPCL %cCRTSCTS %cCSTOPB\n",
-           flagAndVal(term.c_cflag, PARENB), getCSIZE(term.c_cflag & CSIZE), flagAndVal(term.c_cflag, CREAD),
-           flagAndVal(term.c_cflag, CLOCAL), flagAndVal(term.c_cflag, PARODD), flagAndVal(term.c_cflag, CMSPAR),
-           flagAndVal(term.c_cflag, HUPCL), flagAndVal(term.c_cflag, CRTSCTS), flagAndVal(term.c_cflag, CSTOPB));
+    printf("CSIZE%d %cCREAD %cCLOCAL %cPARENB %cPARODD\n",
+           isFlag(term.c_cflag, PARENB), getCSIZE(term.c_cflag & CSIZE), isFlag(term.c_cflag, CREAD),
+           isFlag(term.c_cflag, CLOCAL), isFlag(term.c_cflag, PARODD));
 }
 
 void localSettings(struct termios term) {
-    printf("%cECHO %cECHOE %cECHOK %cECHOCTL %cECHOPRT\n %cECHONL %cECHOKE %cICANON %cIEXTEN %cISIG\n %cXCASE %cTOSTOP "
-           "%cEXTPROC %cFLUSHO %cNOFLSH\n", flagAndVal(term.c_lflag, ECHO), flagAndVal(term.c_lflag, ECHOE),
-           flagAndVal(term.c_lflag, ECHOK), flagAndVal(term.c_lflag, ECHOCTL), flagAndVal(term.c_lflag, ECHOPRT),
-           flagAndVal(term.c_lflag, ECHONL), flagAndVal(term.c_lflag, ECHOKE), flagAndVal(term.c_lflag, ICANON),
-           flagAndVal(term.c_lflag, IEXTEN), flagAndVal(term.c_lflag, ISIG), flagAndVal(term.c_lflag, XCASE),
-           flagAndVal(term.c_lflag, TOSTOP),
-           flagAndVal(term.c_lflag, EXTPROC), flagAndVal(term.c_lflag, FLUSHO), flagAndVal(term.c_lflag, NOFLSH));
+    printf("%cECHO %cECHOE %cECHOK %cECHOCTL %cECHOPRT\n", isFlag(term.c_lflag, ECHO), isFlag(term.c_lflag, ECHOE),
+           isFlag(term.c_lflag, ECHOK), isFlag(term.c_lflag, ECHOCTL), isFlag(term.c_lflag, ECHOPRT));
 }
 
 void inputSettings(struct termios term) {
-    printf("%c%cIXON %cIXOFF %cIUTF8 IGNBRK %cIGNPAR\n %cIGNCR %cBRKINT %cPARMRK %cISTRIP %cINLCR\n %cICRNL %cIUCLC %cIXANY "
-           "%cIMAXBEL %cINPCK\n", flagAndVal(term.c_iflag, IXON), flagAndVal(term.c_iflag, IXOFF), flagAndVal(term.c_iflag, IUTF8),
-           flagAndVal(term.c_iflag, IGNBRK), flagAndVal(term.c_iflag, IGNPAR), flagAndVal(term.c_iflag, IGNCR),
-           flagAndVal(term.c_iflag, BRKINT),
-           flagAndVal(term.c_iflag, PARMRK), flagAndVal(term.c_iflag, ISTRIP), flagAndVal(term.c_iflag, INLCR),
-           flagAndVal(term.c_iflag, ICRNL),
-           flagAndVal(term.c_iflag, IUCLC), flagAndVal(term.c_iflag, IXANY), flagAndVal(term.c_iflag, IMAXBEL),
-           flagAndVal(term.c_iflag, INPCK));
+    printf("%c%cIXON %cIXOFF %cIUTF8 IGNBRK %cIGNPAR\n", isFlag(term.c_iflag, IXON), isFlag(term.c_iflag, IXOFF),
+           isFlag(term.c_iflag, IUTF8), isFlag(term.c_iflag, IGNBRK), isFlag(term.c_iflag, IGNPAR));
 }
 
 void outputSettings(struct termios term) {
-    printf("NLDLY%d CRDLY%d TABDLY%d BSDLY%d VTDLY%d\n FFDLY%d %cONLRET %cONLCR %cONOCR %cOFILL\n "
-           "%cOFDEL %cOPOST %cOLCUC %cOCRNL\n",
+    printf("NLDLY%d CRDLY%d TABDLY%d BSDLY%d VTDLY%d\n",
            getNLDLY(term.c_oflag & NLDLY), getCRDLY(term.c_oflag & CRDLY), getTABDLY(term.c_oflag & TABDLY),
-           getBSDLY(term.c_oflag & BSDLY), getVTDLY(term.c_oflag & VTDLY), getFFDLY(term.c_oflag & FFDLY),
-           flagAndVal(term.c_oflag, ONLRET), flagAndVal(term.c_oflag, ONLCR), flagAndVal(term.c_oflag, ONOCR),
-           flagAndVal(term.c_oflag, OFILL), flagAndVal(term.c_oflag, OFDEL), flagAndVal(term.c_oflag, OPOST),
-           flagAndVal(term.c_oflag, OLCUC), flagAndVal(term.c_oflag, OCRNL));
+           getBSDLY(term.c_oflag & BSDLY), getVTDLY(term.c_oflag & VTDLY));
 }
 
-void humanReadable(int descriptor, struct winsize size) {
+void humanReadable() {
     struct termios term;
-    if (tcgetattr(descriptor, &term) == 0) {
-        printf("speed = %d; row = %d; column = %d; line = %d;\n", getSpeed(term.c_ispeed), size.ws_row, size.ws_col, term.c_line);
-
-        currentSettings(term);
-        localSettings(term);
-        inputSettings(term);
-        outputSettings(term);
-
-        return;
-    }
-
-    printf("Wrong File Descriptor!\n");
+    currentSettings(term);
+    localSettings(term);
+    inputSettings(term);
+    outputSettings(term);
 }
 
-void sttyReadable(int descriptor) {
+void sttyReadable() {
     struct termios term;
-
-    if (tcgetattr(descriptor, &term) == 0) {
-        printf("%x:", term.c_cflag);
-        printf("%x:", term.c_lflag);
-        printf("%x:", term.c_iflag);
-        printf("%x:", term.c_oflag);
-
-        for (int i = 0; i < NCCS - 1; i++) {
-            printf("%x:", term.c_cc[i]);
-        }
-
-        printf("%x\n", term.c_cc[NCCS - 1]);
-    }
+    printf("%x:", term.c_cflag);
+    printf("%x:", term.c_lflag);
+    printf("%x:", term.c_iflag);
+    printf("%x:", term.c_oflag);
 }
 
 int main(int argc, char **argv) {
@@ -551,50 +344,53 @@ int main(int argc, char **argv) {
     if (argc == 1) {
         if (tcgetattr(descriptor, &term) == 0) {
             printf("speed = %d; line = %d; %cBRKINT; %cIMAXBEL; %cIUTF8\n", getSpeed(term.c_ispeed), term.c_line),
-            flagAndVal(term.c_iflag, BRKINT), flagAndVal(term.c_iflag, IMAXBEL), flagAndVal(term.c_iflag, IUTF8);
+                    isFlag(term.c_iflag, BRKINT), isFlag(term.c_iflag, IMAXBEL), isFlag(term.c_iflag, IUTF8);
         } else {
             printf("Wrong File Descriptor!\n");
             return -1;
         }
     } else if (argc == 2) {
         if (strcmp(argv[1], "-a") == 0) {
-            humanReadable(descriptor, size);
+            humanReadable();
         } else if (strcmp(argv[1], "-g") == 0) {
             sttyReadable(descriptor);
         } else {
-            printf("Wrong Argument!");
+            printf("Wrong Flag!");
             return -1;
         }
     } else if (argc >= 3) {
         if (strcmp(argv[1], "-F") == 0) {
             device = argv[2];
-            descriptor = open(device, O_RDWR | O_NOCTTY | O_NONBLOCK);
+            descriptor = open(device, O_NOCTTY | O_RDWR | O_NONBLOCK);
 
             if (descriptor == -1) {
                 printf("Cannot Open The Port!");
                 return -1;
             } else if (strcmp(argv[3], "-a") == 0) {
-                humanReadable(descriptor, size);
+                humanReadable();
             } else if (strcmp(argv[3], "-g") == 0) {
                 sttyReadable(descriptor);
             } else {
-                if (tcgetattr(descriptor, &term) == 0) {
-                    for (int i = 3; i < argc; i++) {
-                        command2[0] = argv[i][0];
-                        size_t len = strlen(argv[i]);
+                if (tcgetattr(descriptor, &term) != 0) {
+                    printf("Wrong File Descriptor!\n");
+                    return -1;
+                } else {
+                    for (int i = 0; i < argc; i++) {
+                        if (i >=3) {
+                            command2[0] = argv[i][0];
+                            size_t len = strlen(argv[i]);
 
-                        if (strcmp(command2, "-") == 0) {
-                            memcpy(command1, &argv[i][1], len - 1);
-                        } else {
-                            memcpy(command1, &argv[i][0], len);
+                            if (strcmp(command2, "-") == 0) {
+                                memcpy(command1, &argv[i][1], len - 1);
+                            } else {
+                                memcpy(command1, &argv[i][0], len);
+                            }
+
+                            configure(command2, command1, &term);
                         }
-                        configure(command2, command1, &term);
                     }
 
                     tcsetattr(descriptor, TCSAFLUSH, &term);
-                } else {
-                    printf("Wrong File Descriptor!\n");
-                    return -1;
                 }
             }
         } else {
