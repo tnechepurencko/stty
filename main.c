@@ -328,6 +328,27 @@ void sttyReadable() {
     printf("%x:", term.c_oflag);
 }
 
+void dealWithCommands(char command1[], char command2[], char **argv) {
+    struct termios term;
+
+    for (int i = 0; i < argc; i++) {
+        if (i >= 3) {
+            command2[0] = argv[i][0];
+            size_t len = strlen(argv[i]);
+
+            if (strcmp(command2, "-") == 0) {
+                memcpy(command1, &argv[i][1], len - 1);
+            } else {
+                memcpy(command1, &argv[i][0], len);
+            }
+
+            configure(command2, command1, &term);
+        }
+    }
+
+    tcsetattr(descriptor, TCSAFLUSH, &term);
+}
+
 int main(int argc, char **argv) {
     char *device;
 
@@ -345,74 +366,27 @@ int main(int argc, char **argv) {
         if (tcgetattr(descriptor, &term) == 0) {
             printf("speed = %d; line = %d; %cBRKINT; %cIMAXBEL; %cIUTF8\n", getSpeed(term.c_ispeed), term.c_line),
                     isFlag(term.c_iflag, BRKINT), isFlag(term.c_iflag, IMAXBEL), isFlag(term.c_iflag, IUTF8);
-        } else {
-            printf("Wrong File Descriptor!\n");
-            return -1;
         }
     } else if (argc == 2) {
         if (strcmp(argv[1], "-a") == 0) {
             humanReadable();
         } else if (strcmp(argv[1], "-g") == 0) {
-            sttyReadable(descriptor);
-        } else {
-            printf("Wrong Flag!");
-            return -1;
+            sttyReadable();
         }
     } else if (argc >= 3) {
         if (strcmp(argv[1], "-F") == 0) {
             device = argv[2];
             descriptor = open(device, O_NOCTTY | O_RDWR | O_NONBLOCK);
 
-            if (descriptor == -1) {
-                printf("Cannot Open The Port!");
-                return -1;
-            } else if (strcmp(argv[3], "-a") == 0) {
+            if (strcmp(argv[3], "-a") == 0) {
                 humanReadable();
             } else if (strcmp(argv[3], "-g") == 0) {
-                sttyReadable(descriptor);
+                sttyReadable();
             } else {
-                if (tcgetattr(descriptor, &term) != 0) {
-                    printf("Wrong File Descriptor!\n");
-                    return -1;
-                } else {
-                    for (int i = 0; i < argc; i++) {
-                        if (i >=3) {
-                            command2[0] = argv[i][0];
-                            size_t len = strlen(argv[i]);
-
-                            if (strcmp(command2, "-") == 0) {
-                                memcpy(command1, &argv[i][1], len - 1);
-                            } else {
-                                memcpy(command1, &argv[i][0], len);
-                            }
-
-                            configure(command2, command1, &term);
-                        }
-                    }
-
-                    tcsetattr(descriptor, TCSAFLUSH, &term);
-                }
+                dealWithCommands(command1, command2, argv);
             }
-        } else {
-            if (tcgetattr(descriptor, &term) == 0) {
-                for (int i = 1; i < argc; i++) {
-                    command2[0] = argv[i][0];
-                    size_t len = strlen(argv[i]);
-
-                    if (strcmp(command2, "-") == 0) {
-                        memcpy(command1, &argv[i][1], len - 1);
-                    } else {
-                        memcpy(command1, &argv[i][0], len);
-                    }
-
-                    configure(command2, command1, &term);
-                }
-
-                tcsetattr(descriptor, TCSAFLUSH, &term);
-            } else {
-                printf("Wrong File Descriptor!\n");
-                return -1;
-            }
+        } else if (tcgetattr(descriptor, &term) == 0) {
+            dealWithCommands(command1, command2, argv);
         }
     }
 
