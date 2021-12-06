@@ -550,9 +550,8 @@ int main(int argc, char **argv) {
 
     if (argc == 1) {
         if (tcgetattr(descriptor, &term) == 0) {
-            printf("speed = %d; line = %d;\n", getSpeed(term.c_ispeed), term.c_line);
-            printf("%cBRKINT %cIMAXBEL %cIUTF8\n", flagAndVal(term.c_iflag, BRKINT), flagAndVal(term.c_iflag, IMAXBEL),
-                   flagAndVal(term.c_iflag, IUTF8));
+            printf("speed = %d; line = %d; %cBRKINT; %cIMAXBEL; %cIUTF8\n", getSpeed(term.c_ispeed), term.c_line),
+            flagAndVal(term.c_iflag, BRKINT), flagAndVal(term.c_iflag, IMAXBEL), flagAndVal(term.c_iflag, IUTF8);
         } else {
             printf("Wrong File Descriptor!\n");
             return -1;
