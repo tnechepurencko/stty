@@ -74,541 +74,387 @@ int getSpeed(int B) {
 
 void configure(char *configs, char *str, struct termios *term) {
     if (strcmp(str, "brkint") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~BRKINT;
-        } else {
-            term->c_iflag |= BRKINT;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~BRKINT;
+        else term->c_iflag |= BRKINT;
     }
 
     if (strcmp(str, "icrnl") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~ICRNL;
-        } else {
-            term->c_iflag |= ICRNL;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~ICRNL;
+        else term->c_iflag |= ICRNL;
     }
 
     if (strcmp(str, "iutf8") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~IUTF8;
-        } else {
-            term->c_iflag |= IUTF8;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IUTF8;
+        else term->c_iflag |= IUTF8;
     }
 
     if (strcmp(str, "crtscts") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~CRTSCTS;
-        } else {
-            term->c_cflag |= CRTSCTS;
-        }
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CRTSCTS;
+        else term->c_cflag |= CRTSCTS;
     }
 
     if (strcmp(str, "iuclc") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~IUCLC;
-        } else {
-            term->c_iflag |= IUCLC;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IUCLC;
+        else term->c_iflag |= IUCLC;
     }
 
     if (strcmp(str, "ignbrk") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~IGNBRK;
-        } else {
-            term->c_iflag |= IGNBRK;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IGNBRK;
+        else term->c_iflag |= IGNBRK;
     }
 
     if (strcmp(str, "parmrk") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~PARMRK;
-        } else {
-            term->c_iflag |= PARMRK;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~PARMRK;
+        else term->c_iflag |= PARMRK;
     }
 
     if (strcmp(str, "cmspar") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~CMSPAR;
-        } else {
-            term->c_cflag |= CMSPAR;
-        }
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CMSPAR;
+        else term->c_cflag |= CMSPAR;
     }
 
     if (strcmp(str, "olcuc") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~OLCUC;
-        } else {
-            term->c_oflag |= OLCUC;
-        }
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~OLCUC;
+        else term->c_oflag |= OLCUC;
     }
 
     if (strcmp(str, "clocal") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~CLOCAL;
-        } else {
-            term->c_cflag |= CLOCAL;
-        }
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CLOCAL;
+        else term->c_cflag |= CLOCAL;
     }
 
     if (strcmp(str, "opost") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~OPOST;
-        } else {
-            term->c_oflag |= OPOST;
-        }
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~OPOST;
+        else term->c_oflag |= OPOST;
     }
 
     if (strcmp(str, "ignpar") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~IGNPAR;
-        } else {
-            term->c_iflag |= IGNPAR;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IGNPAR;
+        else term->c_iflag |= IGNPAR;
     }
 
     if (strcmp(str, "ocrnl") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~OCRNL;
-        } else {
-            term->c_oflag |= OCRNL;
-        }
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~OCRNL;
+        else term->c_oflag |= OCRNL;
     }
 
     if (strcmp(str, "cread") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~CREAD;
-        } else {
-            term->c_cflag |= CREAD;
-        }
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CREAD;
+        else term->c_cflag |= CREAD;
     }
 
     if (strcmp(str, "extproc") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~EXTPROC;
-        } else {
-            term->c_lflag |= EXTPROC;
-        }
-    }
-
-    if (strcmp(str, "cr2") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~CRDLY;
-        } else {
-            term->c_oflag &= ~CRDLY;
-            term->c_oflag |= CR2;
-        }
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~EXTPROC;
+        else term->c_lflag |= EXTPROC;
     }
 
     if (strcmp(str, "onlcr") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~ONLCR;
-        } else {
-            term->c_oflag |= ONLCR;
-        }
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~ONLCR;
+        else term->c_oflag |= ONLCR;
     }
 
     if (strcmp(str, "cstopb") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~CSTOPB;
-        } else {
-            term->c_cflag |= CSTOPB;
-        }
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CSTOPB;
+        else term->c_cflag |= CSTOPB;
     }
 
     if (strcmp(str, "onocr") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~ONOCR;
-        } else {
-            term->c_oflag |= ONOCR;
-        }
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~ONOCR;
+        else term->c_oflag |= ONOCR;
     }
 
     if (strcmp(str, "inpck") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~INPCK;
-        } else {
-            term->c_iflag |= INPCK;
-        }
-    }
-
-    if (strcmp(str, "vt1") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~VTDLY;
-        } else {
-            term->c_oflag &= ~VTDLY;
-            term->c_oflag |= VT1;
-        }
-    }
-
-    if (strcmp(str, "cr1") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~CRDLY;
-        } else {
-            term->c_oflag &= ~CRDLY;
-            term->c_oflag |= CR1;
-        }
-    }
-
-    if (strcmp(str, "cr0") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~CRDLY;
-        } else {
-            term->c_oflag &= ~CRDLY;
-            term->c_oflag |= CR0;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~INPCK;
+        else term->c_iflag |= INPCK;
     }
 
     if (strcmp(str, "istrip") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~ISTRIP;
-        } else {
-            term->c_iflag |= ISTRIP;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~ISTRIP;
+        else term->c_iflag |= ISTRIP;
     }
 
     if (strcmp(str, "inlcr") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~INLCR;
-        } else {
-            term->c_iflag |= INLCR;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~INLCR;
+        else term->c_iflag |= INLCR;
     }
 
     if (strcmp(str, "echonl") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~ECHONL;
-        } else {
-            term->c_lflag |= ECHONL;
-        }
-    }
-
-    if (strcmp(str, "ff1") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~FFDLY;
-        } else {
-            term->c_oflag &= ~FFDLY;
-            term->c_oflag |= FF1;
-        }
-    }
-
-    if (strcmp(str, "cs8") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~CSIZE;
-        } else {
-            term->c_cflag &= ~CSIZE;
-            term->c_cflag |= CS8;
-        }
-    }
-
-    if (strcmp(str, "cr3") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~CRDLY;
-        } else {
-            term->c_oflag &= ~CRDLY;
-            term->c_oflag |= CR3;
-        }
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHONL;
+        else term->c_lflag |= ECHONL;
     }
 
     if (strcmp(str, "noflsh") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~NOFLSH;
-        } else {
-            term->c_lflag |= NOFLSH;
-        }
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~NOFLSH;
+        else term->c_lflag |= NOFLSH;
     }
 
     if (strcmp(str, "igncr") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~IGNCR;
-        } else {
-            term->c_iflag |= IGNCR;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IGNCR;
+        else term->c_iflag |= IGNCR;
     }
 
     if (strcmp(str, "flusho") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~FLUSHO;
-        } else {
-            term->c_lflag |= FLUSHO;
-        }
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~FLUSHO;
+        else term->c_lflag |= FLUSHO;
     }
 
     if (strcmp(str, "echok") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~ECHOK;
-        } else {
-            term->c_lflag |= ECHOK;
-        }
-    }
-
-    if (strcmp(str, "bs1") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~BSDLY;
-        } else {
-            term->c_oflag &= ~BSDLY;
-            term->c_oflag |= BS1;
-        }
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHOK;
+        else term->c_lflag |= ECHOK;
     }
 
     if (strcmp(str, "isig") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~ISIG;
-        } else {
-            term->c_lflag |= ISIG;
-        }
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ISIG;
+        else term->c_lflag |= ISIG;
     }
 
     if (strcmp(str, "xcase") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~XCASE;
-        } else {
-            term->c_lflag |= XCASE;
-        }
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~XCASE;
+        else term->c_lflag |= XCASE;
     }
 
     if (strcmp(str, "ixon") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~IXON;
-        } else {
-            term->c_iflag |= IXON;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IXON;
+        else term->c_iflag |= IXON;
     }
 
     if (strcmp(str, "parodd") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~PARODD;
-        } else {
-            term->c_cflag |= PARODD;
-        }
-    }
-
-    if (strcmp(str, "cs5") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~CSIZE;
-        } else {
-            term->c_cflag &= ~CSIZE;
-            term->c_cflag |= CS5;
-        }
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~PARODD;
+        else term->c_cflag |= PARODD;
     }
 
     if (strcmp(str, "ixoff") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~IXOFF;
-        } else {
-            term->c_iflag |= IXOFF;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IXOFF;
+        else term->c_iflag |= IXOFF;
     }
 
     if (strcmp(str, "ixany") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~IXANY;
-        } else {
-            term->c_iflag |= IXANY;
-        }
-    }
-
-    if (strcmp(str, "nl1") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~NLDLY;
-        } else {
-            term->c_oflag &= ~NLDLY;
-            term->c_oflag |= NL1;
-        }
-    }
-
-    if (strcmp(str, "tab1") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~TABDLY;
-        } else {
-            term->c_oflag &= ~TABDLY;
-            term->c_oflag |= TAB1;
-        }
-    }
-
-    if (strcmp(str, "tab0") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~TABDLY;
-        } else {
-            term->c_oflag &= ~TABDLY;
-            term->c_oflag |= TAB0;
-        }
-    }
-
-    if (strcmp(str, "bs0") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~BSDLY;
-        } else {
-            term->c_oflag &= ~BSDLY;
-            term->c_oflag |= BS0;
-        }
-    }
-
-    if (strcmp(str, "tab2") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~TABDLY;
-        } else {
-            term->c_oflag &= ~TABDLY;
-            term->c_oflag |= TAB2;
-        }
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IXANY;
+        else term->c_iflag |= IXANY;
     }
 
     if (strcmp(str, "echoke") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~ECHOKE;
-        } else {
-            term->c_lflag |= ECHOKE;
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHOKE;
+        else term->c_lflag |= ECHOKE;
+    }
+
+    if (strcmp(str, "imaxbel") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_iflag &= ~IMAXBEL;
+        else term->c_iflag |= IMAXBEL;
+    }
+
+    if (strcmp(str, "icanon") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ICANON;
+        else term->c_lflag |= ICANON;
+    }
+
+    if (strcmp(str, "parenb") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~PARENB;
+        else term->c_cflag |= PARENB;
+    }
+
+
+    if (strcmp(str, "ofdel") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~OFDEL;
+        else term->c_oflag |= OFDEL;
+    }
+
+    if (strcmp(str, "iexten") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~IEXTEN;
+        else term->c_lflag |= IEXTEN;
+    }
+
+    if (strcmp(str, "echoctl") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHOCTL;
+        else term->c_lflag |= ECHOCTL;
+    }
+
+    if (strcmp(str, "tostop") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~TOSTOP;
+        else {
+            term->c_lflag |= TOSTOP;
+        }
+    }
+
+    if (strcmp(str, "hupcl") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~HUPCL;
+        else term->c_cflag |= HUPCL;
+    }
+
+    if (strcmp(str, "echoprt") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHOPRT;
+        else term->c_lflag |= ECHOPRT;
+    }
+
+    if (strcmp(str, "echo") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHO;
+        else term->c_lflag |= ECHO;
+    }
+
+    if (strcmp(str, "echoe") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_lflag &= ~ECHOE;
+        else term->c_lflag |= ECHOE;
+    }
+
+    if (strcmp(str, "onlret") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~ONLRET;
+        else term->c_oflag |= ONLRET;
+    }
+
+    if (strcmp(str, "ofill") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~OFILL;
+        else term->c_oflag |= OFILL;
+    }
+
+    if (strcmp(str, "cs7") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CSIZE;
+        else {
+            term->c_cflag &= ~CSIZE;
+            term->c_cflag |= CS7;
+        }
+    }
+
+    if (strcmp(str, "cs6") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CSIZE;
+        else {
+            term->c_cflag &= ~CSIZE;
+            term->c_cflag |= CS6;
+        }
+    }
+
+    if (strcmp(str, "nl0") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~NLDLY;
+        else {
+            term->c_oflag &= ~NLDLY;
+            term->c_oflag |= NL0;
         }
     }
 
     if (strcmp(str, "vt0") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~VTDLY;
-        } else {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~VTDLY;
+        else {
             term->c_oflag &= ~VTDLY;
             term->c_oflag |= VT0;
         }
     }
 
     if (strcmp(str, "ff0") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~FFDLY;
-        } else {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~FFDLY;
+        else {
             term->c_oflag &= ~FFDLY;
             term->c_oflag |= FF0;
         }
     }
 
-    if (strcmp(str, "imaxbel") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_iflag &= ~IMAXBEL;
-        } else {
-            term->c_iflag |= IMAXBEL;
-        }
-    }
-
-    if (strcmp(str, "nl0") == 0) {
-        if (strcmp(configs, "-") == 0) {
+    if (strcmp(str, "nl1") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~NLDLY;
+        else {
             term->c_oflag &= ~NLDLY;
-        } else {
-            term->c_oflag &= ~NLDLY;
-            term->c_oflag |= NL0;
+            term->c_oflag |= NL1;
         }
     }
 
-    if (strcmp(str, "icanon") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~ICANON;
-        } else {
-            term->c_lflag |= ICANON;
-        }
-    }
-
-    if (strcmp(str, "parenb") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~PARENB;
-        } else {
-            term->c_cflag |= PARENB;
-        }
-    }
-
-    if (strcmp(str, "cs6") == 0) {
-        if (strcmp(configs, "-") == 0) {
+    if (strcmp(str, "cs5") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CSIZE;
+        else {
             term->c_cflag &= ~CSIZE;
-        } else {
+            term->c_cflag |= CS5;
+        }
+    }
+
+    if (strcmp(str, "bs1") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~BSDLY;
+        else {
+            term->c_oflag &= ~BSDLY;
+            term->c_oflag |= BS1;
+        }
+    }
+
+    if (strcmp(str, "tab1") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~TABDLY;
+        else {
+            term->c_oflag &= ~TABDLY;
+            term->c_oflag |= TAB1;
+        }
+    }
+
+    if (strcmp(str, "tab0") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~TABDLY;
+        else {
+            term->c_oflag &= ~TABDLY;
+            term->c_oflag |= TAB0;
+        }
+    }
+
+    if (strcmp(str, "bs0") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~BSDLY;
+        else {
+            term->c_oflag &= ~BSDLY;
+            term->c_oflag |= BS0;
+        }
+    }
+
+    if (strcmp(str, "tab2") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~TABDLY;
+        else {
+            term->c_oflag &= ~TABDLY;
+            term->c_oflag |= TAB2;
+        }
+    }
+
+    if (strcmp(str, "vt1") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~VTDLY;
+        else {
+            term->c_oflag &= ~VTDLY;
+            term->c_oflag |= VT1;
+        }
+    }
+
+    if (strcmp(str, "cr2") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~CRDLY;
+        else {
+            term->c_oflag &= ~CRDLY;
+            term->c_oflag |= CR2;
+        }
+    }
+
+    if (strcmp(str, "cr1") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~CRDLY;
+        else {
+            term->c_oflag &= ~CRDLY;
+            term->c_oflag |= CR1;
+        }
+    }
+
+    if (strcmp(str, "cr0") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~CRDLY;
+        else {
+            term->c_oflag &= ~CRDLY;
+            term->c_oflag |= CR0;
+        }
+    }
+
+    if (strcmp(str, "ff1") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~FFDLY;
+        else {
+            term->c_oflag &= ~FFDLY;
+            term->c_oflag |= FF1;
+        }
+    }
+
+    if (strcmp(str, "cs8") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_cflag &= ~CSIZE;
+        else {
             term->c_cflag &= ~CSIZE;
-            term->c_cflag |= CS6;
+            term->c_cflag |= CS8;
         }
     }
 
-    if (strcmp(str, "ofdel") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~OFDEL;
-        } else {
-            term->c_oflag |= OFDEL;
-        }
-    }
-
-    if (strcmp(str, "iexten") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~IEXTEN;
-        } else {
-            term->c_lflag |= IEXTEN;
-        }
-    }
-
-    if (strcmp(str, "cs7") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~CSIZE;
-        } else {
-            term->c_cflag &= ~CSIZE;
-            term->c_cflag |= CS7;
-        }
-    }
-
-    if (strcmp(str, "echoctl") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~ECHOCTL;
-        } else {
-            term->c_lflag |= ECHOCTL;
-        }
-    }
-
-    if (strcmp(str, "tostop") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~TOSTOP;
-        } else {
-            term->c_lflag |= TOSTOP;
-        }
-    }
-
-    if (strcmp(str, "hupcl") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_cflag &= ~HUPCL;
-        } else {
-            term->c_cflag |= HUPCL;
-        }
-    }
-
-    if (strcmp(str, "echoprt") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~ECHOPRT;
-        } else {
-            term->c_lflag |= ECHOPRT;
-        }
-    }
-
-    if (strcmp(str, "echo") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~ECHO;
-        } else {
-            term->c_lflag |= ECHO;
-        }
-    }
-
-    if (strcmp(str, "echoe") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_lflag &= ~ECHOE;
-        } else {
-            term->c_lflag |= ECHOE;
-        }
-    }
-
-    if (strcmp(str, "onlret") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~ONLRET;
-        } else {
-            term->c_oflag |= ONLRET;
-        }
-    }
-
-    if (strcmp(str, "ofill") == 0) {
-        if (strcmp(configs, "-") == 0) {
-            term->c_oflag &= ~OFILL;
-        } else {
-            term->c_oflag |= OFILL;
+    if (strcmp(str, "cr3") == 0) {
+        if (strcmp(configs, "-") == 0) term->c_oflag &= ~CRDLY;
+        else {
+            term->c_oflag &= ~CRDLY;
+            term->c_oflag |= CR3;
         }
     }
 }
