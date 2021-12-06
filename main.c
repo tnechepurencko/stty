@@ -721,9 +721,9 @@ int main(int argc, char **argv) {
     int flag = 0;
 
     char *device;
+
     char command1[1000];
     char command2[2];
-    char *command3;
 
     struct winsize size;
     struct termios term;
